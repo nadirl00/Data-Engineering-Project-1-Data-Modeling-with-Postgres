@@ -25,20 +25,27 @@ To build the schema(or to drop the tables and rebuild them)
 python create_tables.py
 
 To execute the ETL to load data into the tables:
+```
 python etl.py
-
+```
 Some queries used to test the results of the ETL using test.ipynb:
 
 to combine artist name and song title:
+```
 %sql SELECT name, title FROM songs NATURAL JOIN artists LIMIT 5;
+```
 
 to view rows that appear on all 5 tables:
+```
 %sql SELECT * \
 FROM songplays JOIN songs ON songplays.song_id = songs.song_id \
 JOIN artists ON songplays.artist_id = artists.artist_id \
 JOIN time ON songplays.start_time =  time.start_time \
 JOIN users ON songplays.user_id = users.user_id \
 LIMIT 5;
+```
 
 to check which rows have a song_id:
+```
 %sql SELECT * FROM songplays WHERE song_id != 'None' LIMIT 5;
+```
